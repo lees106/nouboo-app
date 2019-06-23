@@ -1,0 +1,8 @@
+{
+	"auth": {
+		"noubooappaffc52e8": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

@@ -1,0 +1,7 @@
+{
+    "home": {
+        "configLevel": "project",
+        "useProfile": true,
+        "profileName": "default"
+    }
+}

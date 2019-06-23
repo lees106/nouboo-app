@@ -1,0 +1,19 @@
+{
+    "home": {
+        "awscloudformation": {
+            "AuthRoleName": "nouboo-app-home-20190622181825-authRole",
+            "UnauthRoleArn": "arn:aws:iam::298916395714:role/nouboo-app-home-20190622181825-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::298916395714:role/nouboo-app-home-20190622181825-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "nouboo-app-home-20190622181825-deployment",
+            "UnauthRoleName": "nouboo-app-home-20190622181825-unauthRole",
+            "StackName": "nouboo-app-home-20190622181825",
+            "StackId": "arn:aws:cloudformation:us-east-1:298916395714:stack/nouboo-app-home-20190622181825/097443c0-9544-11e9-b571-12a9adafee72"
+        },
+        "categories": {
+            "auth": {
+                "noubooappaffc52e8": {}
+            }
+        }
+    }
+}

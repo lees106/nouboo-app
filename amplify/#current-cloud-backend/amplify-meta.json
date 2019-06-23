@@ -1,0 +1,35 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "nouboo-app-home-20190622181825-authRole",
+			"UnauthRoleArn": "arn:aws:iam::298916395714:role/nouboo-app-home-20190622181825-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::298916395714:role/nouboo-app-home-20190622181825-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "nouboo-app-home-20190622181825-deployment",
+			"UnauthRoleName": "nouboo-app-home-20190622181825-unauthRole",
+			"StackName": "nouboo-app-home-20190622181825",
+			"StackId": "arn:aws:cloudformation:us-east-1:298916395714:stack/nouboo-app-home-20190622181825/097443c0-9544-11e9-b571-12a9adafee72"
+		}
+	},
+	"auth": {
+		"noubooappaffc52e8": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/nouboo-app-home-20190622181825-deployment/amplify-cfn-templates/auth/noubooappaffc52e8-cloudformation-template.yml",
+				"logicalId": "authnoubooappaffc52e8"
+			},
+			"lastPushTimeStamp": "2019-06-22T23:22:42.844Z",
+			"output": {
+				"AppClientSecret": "ko0g93v9qtam6aiuf9f3tj7cf7hfcm0d8r19k3ajcm7lht3gkil",
+				"UserPoolId": "us-east-1_WQ66s6GFF",
+				"AppClientIDWeb": "23u96kq398qn0fh8prgiah3m6t",
+				"AppClientID": "33jplo4b2vh6cg2oacf2qosdvm",
+				"IdentityPoolId": "us-east-1:4a9527e2-e6ee-4c01-9c47-2e7ae973ff89",
+				"IdentityPoolName": "noubooappaffc52e8_identitypool_affc52e8__home",
+				"UserPoolName": "noubooappaffc52e8_userpool_affc52e8"
+			},
+			"lastPushDirHash": "uaviq3+ANtJJDEe4qjLpB50c+As="
+		}
+	}
+}
