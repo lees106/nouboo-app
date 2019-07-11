@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+
+// FONT
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
+
 import { LinearGradient } from "expo-linear-gradient";
 import { Alert, TouchableOpacity, StatusBar } from "react-native";
 
@@ -27,6 +30,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 class LoginScreen extends React.Component {
+  static navigationOptions = {
+    header: null
+  };
+
   state = {
     fontsLoaded: false, // This is needed for the font to work
     iconEmail: require("../assets/icon-email.png"),

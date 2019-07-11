@@ -109,7 +109,7 @@ class SignUpScreen extends React.Component {
 
     const { name, username, password, email, phoneNumber } = this.state;
     // rename variable to conform with Amplify Auth field phone attribute
-    const phone_number = phoneNumber;
+    const phone_number = "+1" + phoneNumber;
     const preferred_username = username;
 
     Auth.signUp({

@@ -11,6 +11,21 @@ import Amplify from "@aws-amplify/core";
 import config from "./src/aws-exports";
 Amplify.configure(config);
 
+// Apollo
+import ApolloClient from "apollo-client";
+import { ApolloProvider } from "react-apollo";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { HttpLink } from "apollo-link-http";
+import TabNavigator from "./navigator/TabNavigator";
+
+const GRAPHCMS_API =
+  "https://api-useast.graphcms.com/v1/cjxqug1zq0lm601f0gbwuxfdy/master";
+
+const client = new ApolloClient({
+  link: new HttpLink({ uri: GRAPHCMS_API }),
+  cache: new InMemoryCache()
+});
+
 const initialState = {
   action: "",
   username: "",
@@ -37,12 +52,12 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer);
 
-const App = () => {
-  return (
+const App = () => (
+  <ApolloProvider client={client}>
     <Provider store={store}>
-      <AppNavigator />
+      <TabNavigator />
     </Provider>
-  );
-};
+  </ApolloProvider>
+);
 
 export default App;
