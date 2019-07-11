@@ -71,7 +71,7 @@ class ConfirmScreen extends React.Component {
     Auth.confirmSignUp(username, authCode)
       .then(() => {
         console.log("Confirm sign up successful");
-        this.props.navigation.navigate("Homescreen");
+        this.props.navigation.navigate("Login");
       })
       .catch(err => {
         if (!err.message) {
@@ -238,6 +238,7 @@ const SignUpButtonText = styled.Text`
 `;
 
 const ResendCode = styled.Text`
+  top: 40px;
   font-size: 12px;
   color: white;
 `;
