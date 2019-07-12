@@ -9,6 +9,7 @@ import {
 } from "react-navigation";
 import SectionScreen from "../screens/SectionScreen";
 import HomeScreen from "../screens/HomeScreen";
+import CourseScreen from '../screens/CourseScreen';
 import LoginScreen from "../screens/LoginScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import ConfirmScreen from "../screens/ConfirmScreen";
@@ -79,11 +80,20 @@ HomeStack.navigationOptions = ({ navigation }) => {
 /************************************************************ */
 // COURSES ITEMS
 const CoursesStack = createStackNavigator({
-  Courses: SectionScreen
+  Courses: CourseScreen
 });
 
 CoursesStack.navigationOptions = {
   tabBarLabel: "Course",
+  tabBarOptions: {
+    activeTintColor: "#03dac6",
+    inactiveTintColor: "#b8bece",
+    style: {
+      paddingTop: 10,
+      height: 55,
+      backgroundColor: "#212121"
+    }
+  },
   tabBarIcon: ({ focused }) => (
     <Icon.Ionicons
       name="ios-albums"
