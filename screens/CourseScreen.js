@@ -69,15 +69,19 @@ function mapDispatchToProps(dispatch) {
 }
 
 class CourseScreen extends React.Component {
+  static navigationOptions = {
+    header: null
+  };
+
   state = {
     scale: new Animated.Value(1),
     opacity: new Animated.Value(1)
   };
 
   componentDidMount() {
-    StatusBar.setBarStyle("dark-content", true);
+    StatusBar.setBarStyle("light-content", true);
 
-    if (Platform.OS == "android") StatusBar.setBarStyle("light-content", true);
+    if (Platform.OS == "android") StatusBar.setBarStyle("dark-content", true);
   }
 
   componentDidUpdate() {
@@ -108,7 +112,7 @@ class CourseScreen extends React.Component {
         toValue: 1
       }).start();
 
-      StatusBar.setBarStyle("dark-content", true);
+      StatusBar.setBarStyle("light-content", true);
     }
   };
 
@@ -135,6 +139,7 @@ class CourseScreen extends React.Component {
                   >
                     <Avatar />
                   </TouchableOpacity>
+                  <Name>{this.props.name}</Name>
 
                   <TouchableOpacity
                     onPress={() => this.props.openNotif()}
@@ -187,6 +192,7 @@ const Title = styled.Text`
 
 const Name = styled.Text`
   font-size: 20px;
+  padding-top: 10px;
   color: white;
   /* color: #3c4560; */
   font-weight: bold;
