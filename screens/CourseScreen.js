@@ -135,17 +135,21 @@ class CourseScreen extends React.Component {
             <TitleBar>
                   <TouchableOpacity
                     onPress={this.handleAvatar}
-                    style={{ position: "absolute", top: 0, left: 20 }}
+                    style={{ position: "absolute", top: 0, right: 20 }}
                   >
                     <Avatar />
                   </TouchableOpacity>
-                  <Name>{this.props.name}</Name>
 
                   <TouchableOpacity
                     onPress={() => this.props.openNotif()}
                     style={{ position: "absolute", right: 20, top: 5 }}
                   />
                 </TitleBar>
+              <Subtitle>Browse the Courses</Subtitle>
+              <Line>-</Line>
+            <ScrollView >
+
+            </ScrollView>
           </ScrollView>
         </SafeAreaView>
         </AnimatedContainer>
@@ -153,7 +157,6 @@ class CourseScreen extends React.Component {
     );
   }
 }
-
 
 export default connect(
   mapStateToProps,
@@ -166,12 +169,23 @@ const RootView = styled.View`
 `;
 
 const Subtitle = styled.Text`
-  color: #b8bece;
-  font-weight: 600;
-  font-size: 15px;
-  margin-left: 20px;
-  margin-top: 30px;
-  text-transform: uppercase;
+  position: absolute;
+  top: 112px;
+  left: 23px;
+  width: 208px;
+  height: 106px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 700;
+`;
+
+const Line = styled.Text`
+  position: absolute;
+  top: 242px;
+  left: 26px;
+  width: 330px;
+  height: 0;
+  border: 1px solid #707070;
 `;
 
 const Container = styled.View`
@@ -184,24 +198,10 @@ const Container = styled.View`
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
-const Title = styled.Text`
-  font-size: 16px;
-  color: #b8bece;
-  font-weight: 500;
-`;
-
-const Name = styled.Text`
-  font-size: 20px;
-  padding-top: 10px;
-  color: white;
-  /* color: #3c4560; */
-  font-weight: bold;
-`;
-
 const TitleBar = styled.View`
   width: 100%;
-  margin-top: 20px;
-  padding-left: 80px;
+  top: 20px;
+  right: 10px;
 `;
 
 const Message = styled.Text`
