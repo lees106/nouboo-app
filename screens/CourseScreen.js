@@ -19,6 +19,9 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Carousel from "../components/Carousel";
 
+//Icons
+import * as Icon from "@expo/vector-icons";
+
 const CardsQuery = gql`
   query cards {
     cardses {
@@ -136,23 +139,32 @@ class CourseScreen extends React.Component {
             <TitleBar>
                   <TouchableOpacity
                     onPress={this.handleAvatar}
-                    style={{ position: "absolute", top: 66, left: 316 }}
+                    style={{ position: "absolute", top: 66, left: 300 }}
                   >
                     <Avatar />
                   </TouchableOpacity>
 
-                  <Subtitle>Browse the Courses</Subtitle>
-              <Line>-</Line>
+                  <BrowseSub>Browse</BrowseSub>
+                  <TheCoursesSub>the Courses</TheCoursesSub>
+       
 
                 </TitleBar>
-                
+             
                 <SearchBarContainer>
                 <SearchInput
                     onChangeText={searchName => this.setState({ searchName })}
-                    placeholder="Search for any course"
+                    placeholder="Search for any course..."
+                    placeholderTextColor="grey"
                     onFocus={this.focusEmail}
                 />
                 </SearchBarContainer>
+                <Icon.Ionicons 
+                  name="ios-search"
+                  size={20}
+                  color="white"
+                  style={{ top: 150, left: 40}}
+                />
+                <Line1>-</Line1>
           {/* First row of cards -------------------------*/}
             <ScrollView  
               horizontal={true}
@@ -255,27 +267,23 @@ const RootView = styled.View`
 const SearchBarContainer = styled.View`
   height: 50px;
   top: 166px;
-  left: 40px;
+  left: 70px;
 `;
 
 const SearchInput = styled.TextInput`
-  background-color: transparent;
+  color: white;
   width: 295px;
   height: 44px;
   font-size: 16px;
-  color: white;
   margin-top: 20px;
-  padding-left: 70px;
-  border: 5px solid red;
+  border: none;
   line-height: 70px;
-  /* outline: none;
-  border-bottom: 3px solid #333333; */
 `;
 
 
-const Subtitle = styled.Text`
+const BrowseSub = styled.Text`
   position: absolute;
-  top: 94px;
+  top: 120px;
   left: 23px;
   width: 208px;
   height: 106px;
@@ -284,11 +292,22 @@ const Subtitle = styled.Text`
   font-weight: 700;
 `;
 
-const Line = styled.Text`
+const TheCoursesSub = styled.Text`
   position: absolute;
-  top: 207px;
-  left: 26px;
-  width: 300px;
+  top: 170px;
+  left: 23px;
+  width: 250px;
+  height: 106px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 700;
+`;
+
+const Line1 = styled.Text`
+  position: absolute;
+  top: 235px;
+  left: 70px;
+  width: 270px;
   height: 0;
   border: 1px solid #707070;
 `;
