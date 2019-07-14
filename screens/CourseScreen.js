@@ -75,7 +75,8 @@ class CourseScreen extends React.Component {
 
   state = {
     scale: new Animated.Value(1),
-    opacity: new Animated.Value(1)
+    opacity: new Animated.Value(1),
+    searchName: ""
   };
 
   componentDidMount() {
@@ -135,21 +136,104 @@ class CourseScreen extends React.Component {
             <TitleBar>
                   <TouchableOpacity
                     onPress={this.handleAvatar}
-                    style={{ position: "absolute", top: 0, right: 20 }}
+                    style={{ position: "absolute", top: 66, left: 316 }}
                   >
                     <Avatar />
                   </TouchableOpacity>
 
-                  <TouchableOpacity
-                    onPress={() => this.props.openNotif()}
-                    style={{ position: "absolute", right: 20, top: 5 }}
-                  />
-                </TitleBar>
-              <Subtitle>Browse the Courses</Subtitle>
+                  <Subtitle>Browse the Courses</Subtitle>
               <Line>-</Line>
-            <ScrollView >
 
+                </TitleBar>
+                
+                <SearchBarContainer>
+                <SearchInput
+                    onChangeText={searchName => this.setState({ searchName })}
+                    placeholder="Search for any course"
+                    onFocus={this.focusEmail}
+                />
+                </SearchBarContainer>
+          {/* First row of cards -------------------------*/}
+            <ScrollView  
+              horizontal={true}
+              style={{ top: 200, left: 15}} 
+            >
+                  
+                  <Query query={CardsQuery}>
+                    {({ loading, error, data }) => {
+                      if (loading) return <Message>Loading...</Message>;
+                      if (error) return <Message>Error...</Message>;
+                      console.log(data.cardses);
+                      return (
+                        <CardsContainer>
+                          {data.cardses.map((card, index) => (
+                            <TouchableOpacity
+                              key={index}
+                              onPress={() => {
+                                this.props.navigation.push("Section", {
+                                  section: card
+                                });
+                              }}
+                            >
+                              <Card
+                                key={index}
+                                title={card.title}
+                                image={{ uri: card.image.url }}
+                                subtitle={card.subtitle}
+                                caption={card.caption}
+                                logo={{ uri: card.logo.url }}
+                                markdown={card.markdown}
+                                />
+                              </TouchableOpacity>
+                            ))}
+                          </CardsContainer>
+                        );
+                      }}
+                    </Query>
             </ScrollView>
+
+            {/* Second row of cards -------------------------*/}
+
+            <ScrollView  
+              horizontal={true}
+              style={{ top: 200, left: 15}} 
+            >
+                  
+                  <Query query={CardsQuery}>
+                    {({ loading, error, data }) => {
+                      if (loading) return <Message>Loading...</Message>;
+                      if (error) return <Message>Error...</Message>;
+                      console.log(data.cardses);
+                      return (
+                        <CardsContainer>
+                          {data.cardses.map((card, index) => (
+                            <TouchableOpacity
+                              key={index}
+                              onPress={() => {
+                                this.props.navigation.push("Section", {
+                                  section: card
+                                });
+                              }}
+                            >
+                              <Card
+                                key={index}
+                                title={card.title}
+                                image={{ uri: card.image.url }}
+                                subtitle={card.subtitle}
+                                caption={card.caption}
+                                logo={{ uri: card.logo.url }}
+                                markdown={card.markdown}
+                                />
+                              </TouchableOpacity>
+                            ))}
+                          </CardsContainer>
+                        );
+                      }}
+                    </Query>
+            </ScrollView>
+                    
+
+            
           </ScrollView>
         </SafeAreaView>
         </AnimatedContainer>
@@ -168,9 +252,30 @@ const RootView = styled.View`
   flex: 1;
 `;
 
+const SearchBarContainer = styled.View`
+  height: 50px;
+  top: 166px;
+  left: 40px;
+`;
+
+const SearchInput = styled.TextInput`
+  background-color: transparent;
+  width: 295px;
+  height: 44px;
+  font-size: 16px;
+  color: white;
+  margin-top: 20px;
+  padding-left: 70px;
+  border: 5px solid red;
+  line-height: 70px;
+  /* outline: none;
+  border-bottom: 3px solid #333333; */
+`;
+
+
 const Subtitle = styled.Text`
   position: absolute;
-  top: 112px;
+  top: 94px;
   left: 23px;
   width: 208px;
   height: 106px;
@@ -181,9 +286,9 @@ const Subtitle = styled.Text`
 
 const Line = styled.Text`
   position: absolute;
-  top: 242px;
+  top: 207px;
   left: 26px;
-  width: 330px;
+  width: 300px;
   height: 0;
   border: 1px solid #707070;
 `;
@@ -200,8 +305,8 @@ const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
 const TitleBar = styled.View`
   width: 100%;
-  top: 20px;
-  right: 10px;
+  top: -50px;
+  left: 15px;
 `;
 
 const Message = styled.Text`
@@ -212,6 +317,13 @@ const Message = styled.Text`
 `;
 
 const CardsContainer = styled.View`
-  flex-direction: row;
+  flex-direction: column;
 `;
+
+
+const TempFix = styled.View`
+  height: 200px;
+  background: white;
+  width: 100%;
+`
 

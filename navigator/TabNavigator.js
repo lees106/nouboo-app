@@ -81,7 +81,11 @@ HomeStack.navigationOptions = ({ navigation }) => {
 // COURSES ITEMS
 const CoursesStack = createStackNavigator({
   Courses: CourseScreen
-});
+  },
+  {
+    mode: "modal"
+  }
+);
 
 CoursesStack.navigationOptions = {
   tabBarLabel: "Course",
