@@ -11,13 +11,11 @@ import {
 import styled from "styled-components";
 import Menu from "../components/Menu";
 import { connect } from "react-redux";
-import Avatar from "../components/Avatar";
 import CoursesCard from "../components/CoursesCard";
 
 // Graph QL and Apollo
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import Carousel from "../components/Carousel";
 
 //Icons
 import * as Icon from "@expo/vector-icons";
@@ -34,16 +32,6 @@ const CardsQuery = gql`
       }
       subtitle
       logo {
-        url
-      }
-    }
-  }
-`;
-
-const AvatarQuery = gql`
-  query avatars {
-    avatars {
-      image {
         url
       }
     }
@@ -130,46 +118,39 @@ class CourseScreen extends React.Component {
         <Menu navigation={this.props.navigation} name={this.props.name} />
         <AnimatedContainer
           style={{
-            transform: [{ scale: this.state.scale }],
-            opacity: this.state.opacity
+          transform: [{ scale: this.state.scale }],
+          opacity: this.state.opacity
           }}
         >
-        <SafeAreaView>
-          <ScrollView style={{height: "100%"}}>
-            <TitleBar>
-                  <TouchableOpacity
-                    onPress={this.handleAvatar}
-                    style={{ position: "absolute", top: 66, left: 300 }}
-                  >
-                    <Avatar />
-                  </TouchableOpacity>
+          <SafeAreaView>
+            <ScrollView style={{height: "100%"}}>
+              <TitleBar>
+              <BrowseSub>Browse</BrowseSub>
+              <TheCoursesSub>the Courses</TheCoursesSub>
 
-                  <BrowseSub>Browse</BrowseSub>
-                  <TheCoursesSub>the Courses</TheCoursesSub>
-       
 
-                </TitleBar>
-             
-                <SearchBarContainer>
-                <SearchInput
-                    onChangeText={searchName => this.setState({ searchName })}
-                    placeholder="Search for any course..."
-                    placeholderTextColor="grey"
-                    onFocus={this.focusEmail}
-                />
-                </SearchBarContainer>
-                <Icon.Ionicons 
-                  name="ios-search"
-                  size={20}
-                  color="white"
-                  style={{ top: 150, left: 40}}
-                />
-                <Line1>-</Line1>
-          {/* First row of cards -------------------------*/}
-          <BodyContainer>
-            <TotalCoursesNumberText>Courses: 5</TotalCoursesNumberText>
-            <Line2>-</Line2>
-            <ScrollView  style={{ top: 100, left: 7, marginBottom: 320}}>
+              </TitleBar>
+
+              <SearchBarContainer>
+              <SearchInput
+                onChangeText={searchName => this.setState({ searchName })}
+                placeholder="Search for any course..."
+                placeholderTextColor="grey"
+                onFocus={this.focusEmail}
+              />
+              </SearchBarContainer>
+              <Icon.Ionicons 
+                name="ios-search"
+                size={20}
+                color="white"
+                style={{ top: 150, left: 40}}
+              />
+              <Line1>-</Line1>
+              {/* First row of cards -------------------------*/}
+              <BodyContainer>
+                <TotalCoursesNumberText>Courses: 5</TotalCoursesNumberText>
+                <Line2>-</Line2>
+                <ScrollView  style={{ top: 100, left: 7, marginBottom: 320}}>
                   <Query query={CardsQuery}>
                     {({ loading, error, data }) => {
                       if (loading) return <Message>Loading...</Message>;
@@ -186,23 +167,23 @@ class CourseScreen extends React.Component {
                                 });
                               }}
                             >
-                              <CoursesCard
-                                key={index}
-                                title={card.title}
-                                image={{ uri: card.image.url }}
-                                logo={{ uri: card.logo.url }}
-                                markdown={card.markdown}
-                                />
-                              </TouchableOpacity>
-                            ))}
-                          </CardsContainer>
-                        );
-                      }}
-                    </Query>
+                            <CoursesCard
+                              key={index}
+                              title={card.title}
+                              image={{ uri: card.image.url }}
+                              logo={{ uri: card.logo.url }}
+                              markdown={card.markdown}
+                            />
+                            </TouchableOpacity>
+                          ))}
+                        </CardsContainer>
+                      );
+                    }}
+                  </Query>
+                </ScrollView>
+              </BodyContainer>
             </ScrollView>
-            </BodyContainer>
-          </ScrollView>
-        </SafeAreaView>
+          </SafeAreaView>
         </AnimatedContainer>
       </RootView>
     );
@@ -219,6 +200,12 @@ const RootView = styled.View`
   flex: 1;
 `;
 
+const TitleBar = styled.View`
+  width: 100%;
+  top: -50px;
+  left: 15px;
+`;
+
 const SearchBarContainer = styled.View`
   height: 50px;
   top: 166px;
@@ -227,8 +214,9 @@ const SearchBarContainer = styled.View`
 
 const SearchInput = styled.TextInput`
   color: white;
-  width: 295px;
-  height: 44px;
+
+  width: 100%;
+  height: 100%;
   font-size: 16px;
   margin-top: 20px;
   border: none;
@@ -262,19 +250,11 @@ const Line1 = styled.Text`
   position: absolute;
   top: 235px;
   left: 70px;
-  width: 270px;
+  width: 75%;
   height: 0;
   border: 1px solid #707070;
 `;
 
-const Line2 = styled.Text`
-  position: absolute;
-  top: 85px;
-  left: 17px;
-  width: 335px;
-  height: 0;
-  border: 0.25px solid #707070;
-`;
 
 const Container = styled.View`
   flex: 1;
@@ -285,12 +265,6 @@ const Container = styled.View`
 `;
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
-
-const TitleBar = styled.View`
-  width: 100%;
-  top: -50px;
-  left: 15px;
-`;
 
 const Message = styled.Text`
   margin: 20px;
@@ -306,7 +280,7 @@ const CardsContainer = styled.View`
 
 const BodyContainer = styled.View`
   top: 211px;
-  width: 375px;
+  width: 100%;
   height: 760px;
   border-radius: 20px;
   border: 0.5px solid #707070;
@@ -320,4 +294,13 @@ const TotalCoursesNumberText = styled.Text`
   position: absolute;
   font-size: 17px;
   font-weight: 700;
+`;
+
+const Line2 = styled.Text`
+  position: absolute;
+  top: 85px;
+  left: 17px;
+  width: 85%;
+  height: 0;
+  border: 0.25px solid #707070;
 `;
