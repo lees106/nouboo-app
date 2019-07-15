@@ -79,9 +79,9 @@ class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-    StatusBar.setBarStyle("dark-content", true);
+    StatusBar.setBarStyle("light-content", true);
 
-    if (Platform.OS == "android") StatusBar.setBarStyle("light-content", true);
+    if (Platform.OS == "android") StatusBar.setBarStyle("dark-content", true);
   }
 
   componentDidUpdate() {
@@ -112,7 +112,7 @@ class HomeScreen extends React.Component {
         toValue: 1
       }).start();
 
-      StatusBar.setBarStyle("dark-content", true);
+      StatusBar.setBarStyle("light-content", true);
     }
   };
 
