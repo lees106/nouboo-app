@@ -12,7 +12,7 @@ import styled from "styled-components";
 import Menu from "../components/Menu";
 import { connect } from "react-redux";
 import Avatar from "../components/Avatar";
-import Card from "../components/Card";
+import CoursesCard from "../components/CoursesCard";
 
 // Graph QL and Apollo
 import { Query } from "react-apollo";
@@ -166,11 +166,10 @@ class CourseScreen extends React.Component {
                 />
                 <Line1>-</Line1>
           {/* First row of cards -------------------------*/}
-            <ScrollView  
-              horizontal={true}
-              style={{ top: 200, left: 15}} 
-            >
-                  
+          <BodyContainer>
+            <TotalCoursesNumberText>Courses: 5</TotalCoursesNumberText>
+            <Line2>-</Line2>
+            <ScrollView  style={{ top: 100, left: 7, marginBottom: 320}}>
                   <Query query={CardsQuery}>
                     {({ loading, error, data }) => {
                       if (loading) return <Message>Loading...</Message>;
@@ -187,12 +186,10 @@ class CourseScreen extends React.Component {
                                 });
                               }}
                             >
-                              <Card
+                              <CoursesCard
                                 key={index}
                                 title={card.title}
                                 image={{ uri: card.image.url }}
-                                subtitle={card.subtitle}
-                                caption={card.caption}
                                 logo={{ uri: card.logo.url }}
                                 markdown={card.markdown}
                                 />
@@ -203,49 +200,7 @@ class CourseScreen extends React.Component {
                       }}
                     </Query>
             </ScrollView>
-
-            {/* Second row of cards -------------------------*/}
-
-            <ScrollView  
-              horizontal={true}
-              style={{ top: 200, left: 15}} 
-            >
-                  
-                  <Query query={CardsQuery}>
-                    {({ loading, error, data }) => {
-                      if (loading) return <Message>Loading...</Message>;
-                      if (error) return <Message>Error...</Message>;
-                      console.log(data.cardses);
-                      return (
-                        <CardsContainer>
-                          {data.cardses.map((card, index) => (
-                            <TouchableOpacity
-                              key={index}
-                              onPress={() => {
-                                this.props.navigation.push("Section", {
-                                  section: card
-                                });
-                              }}
-                            >
-                              <Card
-                                key={index}
-                                title={card.title}
-                                image={{ uri: card.image.url }}
-                                subtitle={card.subtitle}
-                                caption={card.caption}
-                                logo={{ uri: card.logo.url }}
-                                markdown={card.markdown}
-                                />
-                              </TouchableOpacity>
-                            ))}
-                          </CardsContainer>
-                        );
-                      }}
-                    </Query>
-            </ScrollView>
-                    
-
-            
+            </BodyContainer>
           </ScrollView>
         </SafeAreaView>
         </AnimatedContainer>
@@ -312,6 +267,15 @@ const Line1 = styled.Text`
   border: 1px solid #707070;
 `;
 
+const Line2 = styled.Text`
+  position: absolute;
+  top: 85px;
+  left: 17px;
+  width: 335px;
+  height: 0;
+  border: 0.25px solid #707070;
+`;
+
 const Container = styled.View`
   flex: 1;
   background-color: #121212;
@@ -336,13 +300,24 @@ const Message = styled.Text`
 `;
 
 const CardsContainer = styled.View`
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
+const BodyContainer = styled.View`
+  top: 211px;
+  width: 375px;
+  height: 760px;
+  border-radius: 20px;
+  border: 0.5px solid #707070;
+  background-color: #3d3d3d;
+`;
 
-const TempFix = styled.View`
-  height: 200px;
-  background: white;
-  width: 100%;
-`
-
+const TotalCoursesNumberText = styled.Text`
+  color: white;
+  top: 40px;
+  left: 17px;
+  position: absolute;
+  font-size: 17px;
+  font-weight: 700;
+`;
