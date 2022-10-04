@@ -11,7 +11,7 @@
     "apollo-boost": "^0.4.3",
     "aws-amplify": "^1.1.29",
     "aws-amplify-react-native": "^2.1.14",
-    "expo": "^33.0.0",
+    "expo": "^46.0.14",
     "expo-font": "~5.0.1",
     "expo-linear-gradient": "~5.0.1",
     "graphql": "^14.4.2",
